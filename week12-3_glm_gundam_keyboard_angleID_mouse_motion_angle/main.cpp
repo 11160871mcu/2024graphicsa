@@ -144,15 +144,18 @@ void display()
     glEnable(GL_TEXTURE_2D);
     glColor3f(1,1,1);
 
-    ///先全刪
-    drawUpperA();///(3)上手臂放好
-    glPushMatrix(); ///加這行, 讓它轉動
-        glTranslatef(-0.02,-0.09,0);///(3)再掛到上手臂的位置
-        glRotatef(angle,1,0,0);///(2)z軸轉
-        glTranslatef(0,-0.21,0);///(1)
-        drawLowerA();
-    glPopMatrix(); ///加這行, 讓它轉動
-
+    glPushMatrix();
+        ///glTranslatef(....);///掛在肩上
+        glRotatef(angle,0,0,1);///(2)z軸轉
+        glTranslatef(0,-0.07,0);///(1)
+        drawUpperA();///(3)上手臂放好
+        glPushMatrix(); ///加這行, 讓它轉動
+            glTranslatef(-0.02,-0.09,0);///(3)再掛到上手臂的位置
+            ///glRotatef(angle,1,0,0);///(2)z軸轉
+            glTranslatef(0,-0.21,0);///(1)
+            drawLowerA();
+        glPopMatrix(); ///加這行, 讓它轉動
+    glPopMatrix();
     glutSwapBuffers();
 }
 
